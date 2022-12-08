@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{admin/layout_admin.html :: main-fragment('Create post', ~{:: #main-content}, ~{::link}, ~{::script})}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdminLTE 3 | Dashboard</title>
+<!-- DataTables -->
+<link rel="stylesheet"
+	href="/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/admin/css/adminlte.min.css">
+<!-- summernote -->
+<link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+	<div id="main-content">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header"></div>
+					<!-- /.card-header -->
+					<!-- form start -->
+					<form th:object="${post}" th:action="@{/admin/post/create}"
+						method="post">
+						<div class="card-body">
+							<div class="form-group row">
+								<label class="col-sm-1 col-form-label">Title:</label>
+								<div class="col-sm-11">
+									<input type="text" class="form-control"
+										placeholder="Enter post name" th:field="*{title}">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-1 col-form-label" for="exampleInputFile">Image
+									cover</label>
+								<div class="input-group col-sm-11">
+									<div class="custom-file">
+										<input type="file" class="custom-file-input"
+											id="exampleInputFile"> <label
+											class="custom-file-label" for="exampleInputFile">Choose
+											file</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-1 col-form-label">Category</label>
+								<div class="input-group col-5">
+									<select th:field="*{category}" class="form-control">
+										<option th:each="category:${allCategory}"
+											th:value="${category.id}" th:text="${category.name}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-1 col-form-label">Author</label>
+								<div class="input-group col-5">
+									<select th:field="*{user}" class="form-control">
+										<option th:each="user:${allUser}" th:value="${user.id}"
+											th:text="${user.fullName}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-1 col-form-label">Tags</label>
+								<div class="input-group col-5">
+									<select th:field="*{tags}" multiple class="form-control">
+										<option th:each="tag:${allTag}" th:value="${tag.id}"
+											th:text="${tag.name}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="row form-group ">
+								<label class="col-sm-1 col-form-label">Content:</label>
+								<div class="col-md-11">
+									<div class="card card-outline card-info">
+										<div class="card-header">
+											<h3 class="card-title">Summernote</h3>
+										</div>
+										<!-- /.card-header -->
+										<div class="card-body">
+											<textarea id="summernote" th:field="*{content}">
+                								Place <em>some</em> <u>text</u> <strong>here</strong>
+              								</textarea>
+										</div>
+										<div class="card-footer">
+											Visit <a href="https://github.com/summernote/summernote/">Summernote</a>
+											documentation for more examples and information about the
+											plugin.
+										</div>
+									</div>
+								</div>
+								<!-- /.col-->
+							</div>
+						</div>
+						<!-- /.card-body -->
+
+						<div class="card-footer">
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<a href="/admin/post-management/list" type="button"
+								class="btn btn-warning">Back</a>
+						</div>
+					</form>
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+
+	</div>
+	<!-- /.container-fluid -->
+	<!-- jQuery -->
+	<script src="/admin/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- bs-custom-file-input -->
+	<script src="/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="/admin/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/admin/js/demo.js"></script>
+	<!-- Page specific script -->
+	<!-- Summernote -->
+	<script src="/admin/plugins/summernote/summernote-bs4.min.js"></script>
+	<script>
+		$(function() {
+			bsCustomFileInput.init();
+		});
+	</script>
+	<script>
+		$(function() {
+			// Summernote
+			$('#summernote').summernote()
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<!-- Design fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700"
+	rel="stylesheet">
+
+<!-- Bootstrap core CSS -->
+<link href="client/css/bootstrap.css" rel="stylesheet">
+
+<!-- FontAwesome Icons core CSS -->
+<link href="client/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="client/style.css" rel="stylesheet">
+
+<!-- Animate styles for this template -->
+<link href="client/css/animate.css" rel="stylesheet">
+
+<!-- Responsive styles for this template -->
+<link href="client/css/responsive.css" rel="stylesheet">
+
+<!-- Colors for this template -->
+<link href="client/css/colors.css" rel="stylesheet">
+
+<!-- Version Marketing CSS for this template -->
+<link href="client/css/version/marketing.css" rel="stylesheet">
+</head>
+<body style="background-color: #f1f1f1; overflow:hidden;">
+	<div class="row justify-content-center mt-5">
+		<div style="margin: auto 0;" class="col-lg-4 col-md-12">
+			<div class="newsletter-widget text-center  ">
+				<h3>Log in form</h3>
+				<p>Log in to use more features on web site.</p>
+				<form class="form-inline" th:action="@{/login}" method="post">
+					
+						<input type="text" placeholder="Username here.."
+						 required class="form-control" id="username" name="username"/>
+
+						<input type="password" placeholder="Password here.."
+						 required class="form-control" id="password" name="password"/>
+
+						<input type="submit"
+						value="Log in" class="btn btn-default btn-block" />
+				</form>
+			</div>
+			<!-- end newsletter -->
+		</div>
+	</div>
+</body>
+</html>
